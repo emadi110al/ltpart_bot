@@ -17,8 +17,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # مقادیر ثابت را از متغیرهای محیطی Railway بخوانید
-BOT_TOKEN = os.environ.get("7881822944:AAGxT_kO7hu2upomyzoObVwDys-NNr0syUU")
-ADMIN_CHAT_ID = os.environ.get("7390493561")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+ADMIN_CHAT_ID = os.environ.get("ADMIN_CHAT_ID")
 
 # تعریف مراحل مکالمه
 GET_PHOTO, GET_DESCRIPTION = range(2)
