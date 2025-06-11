@@ -21,7 +21,7 @@ GET_PHOTO, GET_DESCRIPTION = range(2)
 # مقادیر ثابت
 # !!! توکن ربات خود و آیدی عددی مدیر را در اینجا جایگزین کنید !!!
 BOT_TOKEN = "7881822944:AAGxT_kO7hu2upomyzoObVwDys-NNr0syUU"  # توکن ربات که از BotFather گرفتید
-ADMIN_CHAT_ID = "7390493561"  # آیدی عددی اکانت مدیر
+ADMIN_CHAT_ID = "278535917"  # آیدی عددی اکانت مدیر
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """شروع مکالمه و درخواست عکس محصول."""
