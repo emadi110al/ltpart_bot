@@ -114,7 +114,7 @@ async def get_brand_model(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 async def get_dxdiag(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """ذخیره اسکرین‌شات و درخواست مشخصات رم و SSD."""
     context.user_data["dxdiag_id"] = update.message.photo[-1].file_id
-    await update.message.reply_text("۷. مشخصات دقیق رم و حافظه SSD/HDD را وارد کنید (مثال: 16GB RAM, 512GB NVMe SSD).")
+    await update.message.reply_text("۷. مشخصات دقیق پردازنده، رم و حافظه SSD/HDD را وارد کنید (مثال: i5 12400, 16GB RAM, 512GB SSD NVMe).")
     return GET_RAM_SSD
 
 
@@ -180,7 +180,7 @@ async def get_charger_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         f"\- یوزرنیم تلگرام: @{escape_markdown(user.username, version=2) if user.username else 'ندارد'}\n\n"
         f"📋 *مشخصات دستگاه:*\n"
         f"\- برند و مدل: {brand_model}\n"
-        f"\- رم و حافظه: {ram_ssd}\n"
+        f"\- پردازنده، رم و حافظه: {ram_ssd}\n"
         f"\- سلامت باتری: {battery_health}%\n\n"
         f"📝 *وضعیت ظاهری و فنی:*\n"
         f"\- شکستگی یا فرورفتگی: {user_info.get('has_breakage', 'وارد نشده')}\n"
