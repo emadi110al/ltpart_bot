@@ -184,7 +184,7 @@ async def get_charger_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         f"\- سلامت باتری: {battery_health}%\n\n"
         f"📝 *وضعیت ظاهری و فنی:*\n"
         f"\- شکستگی یا فرورفتگی: {user_info.get('has_breakage', 'وارد نشده')}\n"
-        f"\- وضعیت صفحه‌نمایش: {user_info.get('screen_status', 'وارد نشده')}\n"
+        f"\- صفحه نمایش سالم: {user_info.get('screen_status', 'وارد نشده')}\n"
         f"\- مادربرد تعمیر شده: {user_info.get('motherboard_status', 'وارد نشده')}\n"
         f"\- آداپتور اصلی: {user_info.get('charger_status', 'وارد نشده')}\n"
     )
