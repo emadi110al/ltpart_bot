@@ -15,6 +15,7 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
+from telegram.helpers import escape_markdown
 
 # فعال کردن لاگ برای دیدن خطاها
 logging.basicConfig(
@@ -163,18 +164,25 @@ async def get_charger_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
         reply_markup=ReplyKeyboardRemove(),
     )
 
-    # ساخت گزارش متنی کامل
+    # Escape کردن تمام ورودی‌های کاربر برای جلوگیری از خطای Markdown
+    full_name = escape_markdown(user_info.get('full_name', 'وارد نشده'), version=2)
+    mobile_number = escape_markdown(user_info.get('mobile_number', 'وارد نشده'), version=2)
+    brand_model = escape_markdown(user_info.get('brand_model', 'وارد نشده'), version=2)
+    ram_ssd = escape_markdown(user_info.get('ram_ssd', 'وارد نشده'), version=2)
+    battery_health = escape_markdown(user_info.get('battery_health', 'وارد نشده'), version=2)
+    
+    # ساخت گزارش متنی کامل با مقادیر امن شده
     report = (
-        f"💻 **درخواست فروش لپ‌تاپ جدید** 💻\n\n"
-        f"👤 **اطلاعات فروشنده:**\n"
-        f"- نام کامل: {user_info.get('full_name', 'وارد نشده')}\n"
-        f"- شماره تماس: {user_info.get('mobile_number', 'وارد نشده')}\n"
-        f"- یوزرنیم تلگرام: @{user.username}\n\n"
-        f"📋 **مشخصات دستگاه:**\n"
-        f"- برند و مدل: {user_info.get('brand_model', 'وارد نشده')}\n"
-        f"- رم و حافظه: {user_info.get('ram_ssd', 'وارد نشده')}\n"
-        f"- سلامت باتری: {user_info.get('battery_health', 'وارد نشده')}%\n\n"
-        f"📝 **وضعیت ظاهری و فنی:**\n"
+        f"💻 *درخواست فروش لپ‌تاپ جدید* 💻\n\n"
+        f"👤 *اطلاعات فروشنده:*\n"
+        f"- نام کامل: {full_name}\n"
+        f"- شماره تماس: {mobile_number}\n"
+        f"- یوزرنیم تلگرام: @{escape_markdown(user.username, version=2) if user.username else 'ندارد'}\n\n"
+        f"📋 *مشخصات دستگاه:*\n"
+        f"- برند و مدل: {brand_model}\n"
+        f"- رم و حافظه: {ram_ssd}\n"
+        f"- سلامت باتری: {battery_health}%\n\n"
+        f"📝 *وضعیت ظاهری و فنی:*\n"
         f"- شکستگی یا فرورفتگی: {user_info.get('has_breakage', 'وارد نشده')}\n"
         f"- وضعیت صفحه‌نمایش: {user_info.get('screen_status', 'وارد نشده')}\n"
         f"- مادربرد تعمیر شده: {user_info.get('motherboard_status', 'وارد نشده')}\n"
@@ -191,7 +199,7 @@ async def get_charger_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     # ارسال گزارش به ادمین
     try:
         await context.bot.send_media_group(chat_id=ADMIN_CHAT_ID, media=media_group)
-        await context.bot.send_message(chat_id=ADMIN_CHAT_ID, text=report, parse_mode='Markdown')
+        await context.bot.send_message(chat_id=ADMIN_CHAT_ID, text=report, parse_mode='MarkdownV2')
     except Exception as e:
         logger.error(f"Failed to send report to admin: {e}")
         await update.message.reply_text("متاسفانه در ارسال اطلاعات به مدیر مشکلی پیش آمد. لطفاً بعداً دوباره تلاش کنید.")
