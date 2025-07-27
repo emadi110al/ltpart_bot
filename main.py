@@ -24,8 +24,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # خواندن متغیرهای محیطی از پلتفرم میزبان (Railway)
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-ADMIN_CHAT_ID = os.environ.get("ADMIN_CHAT_ID")
+BOT_TOKEN = "7881822944:AAHghmaXnq4Ue-XPI9iDhtEk2g_T7gF9kP4"
+ADMIN_CHAT_ID = "278535917"
 
 # تعریف حالت‌های مختلف مکالمه برای پرسشنامه
 (
