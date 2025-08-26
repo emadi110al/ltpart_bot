@@ -175,19 +175,20 @@ async def get_charger_status(update: Update, context: ContextTypes.DEFAULT_TYPE)
     report = (
         f"💻 *درخواست فروش لپ‌تاپ جدید* 💻\n\n"
         f"👤 *اطلاعات فروشنده:*\n"
-        f"\- نام کامل: {full_name}\n"
-        f"\- شماره تماس: {mobile_number}\n"
-        f"\- یوزرنیم تلگرام: @{escape_markdown(user.username, version=2) if user.username else 'ندارد'}\n\n"
+        f"\\- نام کامل: {full_name}\n"
+        f"\\- شماره تماس: {mobile_number}\n"
+        f"\\- یوزرنیم تلگرام: @{escape_markdown(user.username, version=2) if user.username else 'ندارد'}\n\n"
         f"📋 *مشخصات دستگاه:*\n"
-        f"\- برند و مدل: {brand_model}\n"
-        f"\- پردازنده، رم و حافظه: {ram_ssd}\n"
-        f"\- سلامت باتری: {battery_health}%\n\n"
+        f"\\- برند و مدل: {brand_model}\n"
+        f"\\- پردازنده، رم و حافظه: {ram_ssd}\n"
+        f"\\- سلامت باتری: {battery_health}%\n\n"
         f"📝 *وضعیت ظاهری و فنی:*\n"
-        f"\- شکستگی یا فرورفتگی: {user_info.get('has_breakage', 'وارد نشده')}\n"
-        f"\- صفحه نمایش سالم: {user_info.get('screen_status', 'وارد نشده')}\n"
-        f"\- مادربرد تعمیر شده: {user_info.get('motherboard_status', 'وارد نشده')}\n"
-        f"\- آداپتور اصلی: {user_info.get('charger_status', 'وارد نشده')}\n"
+        f"\\- شکستگی یا فرورفتگی: {user_info.get('has_breakage', 'وارد نشده')}\n"
+        f"\\- صفحه نمایش سالم: {user_info.get('screen_status', 'وارد نشده')}\n"
+        f"\\- مادربرد تعمیر شده: {user_info.get('motherboard_status', 'وارد نشده')}\n"
+        f"\\- آداپتور اصلی: {user_info.get('charger_status', 'وارد نشده')}\n"
     )
+
 
     # ساخت لیست مدیا برای ارسال به صورت آلبوم
     media_group = [
@@ -256,4 +257,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
